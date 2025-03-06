@@ -1,22 +1,48 @@
-// src/components/DogSearch.js
 import React, { useEffect, useState } from 'react';
 import { fetchBreeds, searchDogs, fetchDogsByIds, matchDogs } from '../services/api';
-import DogCard from './DogCard';
 import {
   Container,
+  Box,
   Typography,
-  Select,
-  MenuItem,
   FormControl,
   InputLabel,
+  Select,
+  MenuItem,
   Button,
   Grid,
-  Box,
   Paper
 } from '@mui/material';
+import { keyframes } from '@emotion/react';
+import PetsIcon from '@mui/icons-material/Pets';
 
-// 1. Import the same background image as in Login.js
-import dogBg from '../assets/Leooo.jpg'; // Adjust the path if needed
+import dogBg from '../assets/Leooo.jpg';
+
+import DogCard from './DogCard';
+
+const floatGradient = keyframes`
+  0% {
+    transform: translate(-50%, -50%);
+  }
+  50% {
+    transform: translate(-45%, -55%);
+  }
+  100% {
+    transform: translate(-50%, -50%);
+  }
+`;
+
+//Bouncy icon animation for the footer
+const bounce = keyframes`
+  0%, 20%, 50%, 80%, 100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-10px);
+  }
+  60% {
+    transform: translateY(-5px);
+  }
+`;
 
 const DogSearch = () => {
   const [breeds, setBreeds] = useState([]);
@@ -54,8 +80,8 @@ const DogSearch = () => {
       const { resultIds, next, prev, total } = searchResults;
       setPagination({ next, prev });
       setTotal(total);
-  
-      if (resultIds?.length) {
+
+      if (resultIds && resultIds.length > 0) {
         const dogsData = await fetchDogsByIds(resultIds);
         setDogs(dogsData);
       } else {
@@ -73,15 +99,9 @@ const DogSearch = () => {
 
   const handleNextPage = () => {
     if (!pagination.next) return;
-  
-    // pagination.next might be "size=25&from=25"
     const nextParams = new URLSearchParams(pagination.next);
-  
-    // Extract 'size' and 'from' from that string
-    const sizeVal = nextParams.get('size'); 
+    const sizeVal = nextParams.get('size');
     const fromVal = nextParams.get('from');
-  
-    // Merge them into your existing pageParams
     setPageParams((prev) => ({
       ...prev,
       size: sizeVal || prev.size,
@@ -91,12 +111,9 @@ const DogSearch = () => {
 
   const handlePrevPage = () => {
     if (!pagination.prev) return;
-  
-    // Same logic for 'prev'
     const prevParams = new URLSearchParams(pagination.prev);
     const sizeVal = prevParams.get('size');
     const fromVal = prevParams.get('from');
-  
     setPageParams((prev) => ({
       ...prev,
       size: sizeVal || prev.size,
@@ -125,46 +142,55 @@ const DogSearch = () => {
     }
   };
 
+  // Calculate how many dogs have been shown so far
+  const fromNumber = pageParams.from ? parseInt(pageParams.from, 10) : 0;
+  const shownSoFar = fromNumber + dogs.length;
+
   return (
-    /**
-     * 2. Full-width Container with the same background image,
-     *    placed behind the content. We use paddingTop to ensure
-     *    it doesn't hide behind the fixed NavBar.
-     */
     <Container
       maxWidth={false}
       disableGutters
       sx={{
+        minHeight: '100vh',
+        display: 'flex',
+        flexDirection: 'column',
         backgroundImage: `url(${dogBg})`,
         backgroundSize: 'cover',
         backgroundPosition: 'center',
-        minHeight: 'calc(100vh - 64px)', // Fill screen space below NavBar
-        pt: '80px', // Extra padding to avoid overlapping the NavBar
-        pb: '40px', // Bottom padding for aesthetics
+        backgroundRepeat: 'no-repeat',
+        position: 'relative',
+        overflow: 'hidden',
+        pt: '64px',
       }}
     >
-      {/**
-       * 3. A semi-transparent box that holds the filters, dog listings,
-       *    pagination controls, and match button.
-       */}
       <Box
         sx={{
-          maxWidth: '1200px',
-          mx: 'auto',
-          backgroundColor: 'rgba(255, 255, 255, 0.8)',
+          position: 'absolute',
+          top: '50%',
+          left: '50%',
+          width: '200%',
+          height: '200%',
+          background: 'radial-gradient(circle, rgba(255,255,255,0.3), transparent 70%)',
+          animation: `${floatGradient} 8s ease-in-out infinite`,
+          zIndex: 1,
+          pointerEvents: 'none',
+        }}
+      />
+      <Box
+        sx={{
+          flex: 1,
+          position: 'relative',
+          zIndex: 2,
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
           p: 3,
-          borderRadius: 2,
-          boxShadow: '0 4px 10px rgba(0, 0, 0, 0.3)',
         }}
       >
-        <Typography variant="h4" gutterBottom textAlign="center">
+        <Typography variant="h4" gutterBottom textAlign="center" sx={{ color: '#fff', textShadow: '1px 1px 4px rgba(0,0,0,0.7)' }}>
           Search for Your New Best Friend
         </Typography>
 
-        {/**
-         * 4. Filter Row: Place breed selector and sort order in a flexible box,
-         *    so they look neat and professional.
-         */}
         <Box
           sx={{
             display: 'flex',
@@ -172,6 +198,10 @@ const DogSearch = () => {
             mb: 3,
             justifyContent: 'center',
             flexWrap: 'wrap',
+            backgroundColor: 'rgba(255,255,255,0.6)',
+            p: 2,
+            borderRadius: 2,
+            boxShadow: '0 2px 8px rgba(0,0,0,0.2)',
           }}
         >
           <FormControl sx={{ minWidth: 150 }}>
@@ -207,11 +237,7 @@ const DogSearch = () => {
           </FormControl>
         </Box>
 
-        {/**
-         * 5. Dog Listings: We wrap each DogCard in a Paper component
-         *    for a neat card effect with box shadow and hover scale.
-         */}
-        <Grid container spacing={2}>
+        <Grid container spacing={2} sx={{ maxWidth: 1200 }}>
           {dogs.map((dog) => (
             <Grid item xs={12} sm={6} md={4} key={dog.id}>
               <Paper
@@ -235,37 +261,45 @@ const DogSearch = () => {
           ))}
         </Grid>
 
-        {/**
-         * 6. Pagination Controls
-         */}
-        <Box sx={{ display: 'flex', justifyContent: 'space-between', mt: 4 }}>
+        <Box sx={{ display: 'flex', justifyContent: 'space-between', mt: 4, width: '100%', maxWidth: 1200 }}>
           <Button variant="contained" disabled={!pagination.prev} onClick={handlePrevPage}>
             Previous
           </Button>
-          {/* Calculate how many dogs we've paged through so far */}
-          {(() => {
-            const fromNumber = pageParams.from ? parseInt(pageParams.from, 10) : 0;
-            const startIndex = fromNumber + 1;
-            const endIndex = fromNumber + dogs.length;
-            return (
-              <Typography variant="body1">
-                Showing {startIndex}–{endIndex} of {total} dogs
-              </Typography>
-            );
-          })()}
+          <Typography variant="body1" sx={{ alignSelf: 'center', color: '#fff', textShadow: '1px 1px 2px rgba(0,0,0,0.5)' }}>
+            Showing {shownSoFar} of {total} dogs
+          </Typography>
           <Button variant="contained" disabled={!pagination.next} onClick={handleNextPage}>
             Next
           </Button>
         </Box>
 
-        {/**
-         * 7. Match Generation
-         */}
         <Box sx={{ mt: 4, textAlign: 'center' }}>
           <Button variant="contained" color="secondary" onClick={handleGenerateMatch}>
             Generate Match from Favorites ({favorites.length})
           </Button>
         </Box>
+      </Box>
+
+      <Box
+        component="footer"
+        sx={{
+          backgroundColor: 'rgba(0, 0, 0, 0.4)',
+          color: '#fff',
+          textShadow: '1px 1px 2px rgba(0,0,0,0.5)',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          py: 2,
+          gap: 1,
+          zIndex: 3,
+        }}
+      >
+        <Box sx={{ animation: `${bounce} 2s infinite` }}>
+          <PetsIcon />
+        </Box>
+        <Typography variant="body2" fontWeight="bold">
+          © {new Date().getFullYear()} Fetch Rewards
+        </Typography>
       </Box>
     </Container>
   );

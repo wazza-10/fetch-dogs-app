@@ -5,7 +5,6 @@ import DogSearch from './components/DogSearch';
 import NavBar from './components/NavBar';
 
 function App() {
-  //  Maintaining a basic auth state.
   const [authenticated, setAuthenticated] = useState(false);
 
   return (

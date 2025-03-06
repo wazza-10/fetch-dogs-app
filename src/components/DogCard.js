@@ -1,4 +1,3 @@
-// src/components/DogCard.js
 import React from 'react';
 import { Card, CardMedia, CardContent, Typography, CardActions, Button } from '@mui/material';
 

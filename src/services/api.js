@@ -18,7 +18,6 @@ export const logoutUser = async () => {
   return response.data;
 };
 
-// Dogs API
 export const fetchBreeds = async () => {
   const response = await api.get('/dogs/breeds');
   return response.data;
@@ -30,7 +29,6 @@ export const searchDogs = async (params) => {
 };
 
 export const fetchDogsByIds = async (dogIds) => {
-  // dogIds: array of strings
   const response = await api.post('/dogs', dogIds);
   return response.data;
 };
