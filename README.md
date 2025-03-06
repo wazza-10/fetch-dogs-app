@@ -1,70 +1,54 @@
-# Getting Started with Create React App
+# Fetch Dogs App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Fetch Dogs App is a cutting-edge, interactive front-end application crafted with love for dog enthusiasts! This project brings together the best of modern web technologies to offer a seamless and delightful experience for anyone looking to find their next furry friend.
 
-## Available Scripts
+## Key Features
 
-In the project directory, you can run:
+- **User Authentication:**  
+  Secure login using just your name and email, with session management via HttpOnly cookies.
 
-### `npm start`
+- **Dynamic Dog Search:**  
+  Browse a comprehensive database of shelter dogs. Filter by breed, sort results alphabetically, and navigate through paginated results effortlessly.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- **Detailed Dog Profiles:**  
+  View all the essential details for each dog—name, age, breed, ZIP code, and an engaging image—to help you make an informed choice.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- **Favorites & Matching:**  
+  Select your favorite dogs and generate a perfect match with a single click, powered by our intuitive matching API.
 
-### `npm test`
+- **Modern Tech Stack:**  
+  Built with [React](https://reactjs.org/), [Axios](https://axios-http.com/), [React Router](https://reactrouter.com/), and [Material-UI](https://mui.com/), this project demonstrates best practices in front-end engineering and responsive design.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Getting Started
 
-### `npm run build`
+Follow these instructions to set up and run the project locally.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Prerequisites
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- [Node.js](https://nodejs.org/) (v12 or later)
+- [npm](https://www.npmjs.com/) (comes with Node.js)
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### Installation
 
-### `npm run eject`
+1. **Clone the Repository:**
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+   ```bash
+   git clone https://github.com/your-username/fetch-dogs-app.git
+   cd fetch-dogs-app
+2. **Install Dependencies:**
+   ```bash
+   npm install
+3. **Running the Application Locally**
+   ```bash
+   npm start
+4. **Build for Production**
+   ```bash
+   npm run build
+### Troubleshooting
+**Module Not Found Error:**
+If you encounter an error related to module versions (like ajv-keywords expecting a specific version of ajv), try installing a compatible version:
+```bash
+npm install ajv@6.12.6
+```
+### Contact
+For any questions or suggestions, please open an issue or contact me at aakashshoraan7@gmail.com
