@@ -4,20 +4,30 @@ Fetch Dogs App is a cutting-edge, interactive front-end application crafted with
 
 ## Key Features
 
-- **User Authentication:**  
-  Secure login using just your name and email, with session management via HttpOnly cookies.
+1. **User Authentication**  
+   - Secure login using just your name and email, with session management via HttpOnly cookies.  
+   - A sleek, glassmorphic login page featuring a full-screen background, animated gradient overlay, and no scrolling.
 
-- **Dynamic Dog Search:**  
-  Browse a comprehensive database of shelter dogs. Filter by breed, sort results alphabetically, and navigate through paginated results effortlessly.
+2. **Clickable NavBar Branding**  
+   - The NavBar includes a “Woof Finder” title that, when clicked, redirects users back to the login page.
 
-- **Detailed Dog Profiles:**  
-  View all the essential details for each dog—name, age, breed, ZIP code, and an engaging image—to help you make an informed choice.
+3. **Dynamic Dog Search**  
+   - Browse a comprehensive database of shelter dogs.  
+   - Filter by breed, sort results alphabetically (ascending or descending), and navigate through paginated results effortlessly.
 
-- **Favorites & Matching:**  
-  Select your favorite dogs and generate a perfect match with a single click, powered by our intuitive matching API.
+4. **Detailed Dog Profiles**  
+   - View all the essential details for each dog—name, age, breed, ZIP code, and a charming image—to help you make an informed choice.
 
-- **Modern Tech Stack:**  
-  Built with [React](https://reactjs.org/), [Axios](https://axios-http.com/), [React Router](https://reactrouter.com/), and [Material-UI](https://mui.com/), this project demonstrates best practices in front-end engineering and responsive design.
+5. **Favorites & Matching**  
+   - Select your favorite dogs and generate a perfect match with a single click, powered by our intuitive matching API.
+
+6. **Unified Theming & Styling**  
+   - Both the login and dog search pages feature consistent backgrounds, animated gradient overlays, and a bouncy footer referencing “Fetch Rewards.”  
+   - Cards and filter sections have subtle hover effects and shadows for a modern UI.
+
+7. **Modern Tech Stack**  
+   - Built with [React](https://reactjs.org/), [Axios](https://axios-http.com/), [React Router](https://reactrouter.com/), and [Material-UI](https://mui.com/).  
+   - Demonstrates best practices in front-end engineering, responsive design, and advanced styling (using Emotion for animations).
 
 ## Getting Started
 
@@ -50,5 +60,8 @@ If you encounter an error related to module versions (like ajv-keywords expectin
 ```bash
 npm install ajv@6.12.6
 ```
+**CORS/Network Errors**
+  - Ensure ```withCredentials: true ``` is set in your Axios configuration so cookies are sent.
+  - Make sure you allow cross-site cookies in your browser
 ### Contact
 For any questions or suggestions, please open an issue or contact me at aakashshoraan7@gmail.com
